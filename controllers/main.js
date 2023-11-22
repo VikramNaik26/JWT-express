@@ -3,20 +3,21 @@
 // send back to frontend
 
 const jwt = require('jsonwebtoken')
-const CustomAPIError = require('../errors/custom-error')
+const { BadRequest } = require('../errors/index')
 
 // set up authentication so only the request with JWT can access the dashboard
 
 const login = async (req, res) => {
   const { username, password } = req.body
-  console.log(username, password)
+  // console.log(username, password)
 
   // mongo
   // Joi
   // check in controler
 
   if (!username || !password) {
-    throw new CustomAPIError('please provide a username and password', 400)
+    // throw new CustomAPIError('please provide a username and password', 400)
+    throw new BadRequest('please provide a username and password')
   }
   // just for demo in production use long, complex and unguesable string values!!!!!!!!!
   // try to keep payload small, better experience for users
